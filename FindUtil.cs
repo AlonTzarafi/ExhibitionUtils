@@ -21,7 +21,8 @@ namespace ExhibitionUtils
         static public GameObject FindGameObjectMatchName(string str)
         {
             Debug.Log($"Finding GO with name: {str}");
-            return FindComponentMatchStringGlobal<GameObject>(str);
+            return GameObject.FindObjectsOfType<GameObject>()
+                .First(go => go.name == str);
         }
 
     }

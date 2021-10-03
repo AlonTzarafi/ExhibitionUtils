@@ -7,5 +7,7 @@ namespace ExhibitionUtils
         English,
         Arabic,
         Russian,
+
+        None,
     }
 }

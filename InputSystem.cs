@@ -30,7 +30,7 @@ namespace ExhibitionUtils
             if (anyInput) {
                 timeIdle = 0;
             } else {
-                timeIdle += Time.deltaTime;
+                timeIdle += Time.unscaledDeltaTime;
             }
         }
 

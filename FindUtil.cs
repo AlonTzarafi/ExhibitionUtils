@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ExhibitionUtils
 {
@@ -25,5 +26,13 @@ namespace ExhibitionUtils
                 .First(go => go.name == str);
         }
 
+        static public List<GameObject> GetChildren(GameObject obj)
+        {
+            var a = new List<GameObject>();
+            for (int i = 0; i < obj.transform.childCount; i++) {
+                a.Add(obj.transform.GetChild(i).gameObject);
+            }
+            return a;
+        }
     }
 }

@@ -10,9 +10,11 @@ namespace ExhibitionUtils
         private bool isTouching;
         private Touch? touch;
 
+        private float timeIdle;
+
         public InputSystem()
         {
-
+            timeIdle = 0f;
         }
 
         public void EarlyUpdate()
@@ -22,6 +24,13 @@ namespace ExhibitionUtils
             touch = null;
             if (Input.touchCount > 0) {
                 touch = Input.touches[0];
+            }
+
+            var anyInput = IsPressing();
+            if (anyInput) {
+                timeIdle = 0;
+            } else {
+                timeIdle += Time.deltaTime;
             }
         }
 
@@ -56,6 +65,11 @@ namespace ExhibitionUtils
             return Input.GetMouseButtonUp(0);
             // ||
             // (!isTouching && lastIsTouching);
+        }
+
+        public float GetTimeIdle()
+        {
+            return timeIdle;
         }
 
     }

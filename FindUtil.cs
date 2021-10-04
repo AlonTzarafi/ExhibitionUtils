@@ -34,5 +34,15 @@ namespace ExhibitionUtils
             }
             return a;
         }
+
+        static public GameObject[] GetChildrenArray(GameObject obj)
+        {
+            var a = new GameObject[obj.transform.childCount];
+            for (int i = 0; i < obj.transform.childCount; i++) {
+                a[i] = obj.transform.GetChild(i).gameObject;
+            }
+            return a;
+        }
+
     }
 }

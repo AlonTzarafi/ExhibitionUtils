@@ -28,15 +28,14 @@ namespace ExhibitionUtils
     public struct SoundNameAndClip
     {
         public string name;
-        public AudioClip clip;
         public AudioClip[] multipleClips;
 
         public AudioClip GetClip()
         {
-            if (multipleClips == null || !multipleClips.Any()) {
-                return clip;
+            if (multipleClips != null && multipleClips.Any()) {
+                return RandomUtil.GetRandom(multipleClips);
             }
-            return RandomUtil.GetRandom(multipleClips);
+            return null;
         }
     }
 }

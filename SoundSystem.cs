@@ -24,7 +24,9 @@ namespace ExhibitionUtils
             }
 
             var clip = soundConfig.GetClip(soundName);
-            audioSource.PlayOneShot(clip);
+            if (clip != null) {
+                audioSource.PlayOneShot(clip);
+            }
         }
     }
 }

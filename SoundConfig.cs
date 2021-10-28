@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ExhibitionUtils
@@ -15,7 +16,7 @@ namespace ExhibitionUtils
             foreach (var sound in sounds)
             {
                 if (sound.name == soundName) {
-                    return sound.clip;
+                    return sound.GetClip();
                 }
             }
             Debug.LogError($"Sound does not exist in the config: {soundName}", this);
@@ -28,5 +29,14 @@ namespace ExhibitionUtils
     {
         public string name;
         public AudioClip clip;
+        public AudioClip[] multipleClips;
+
+        public AudioClip GetClip()
+        {
+            if (multipleClips == null || !multipleClips.Any()) {
+                return clip;
+            }
+            return RandomUtil.GetRandom(multipleClips);
+        }
     }
 }

@@ -18,7 +18,9 @@ namespace ExhibitionUtils
 
         public void PlaySound(string soundName)
         {
-            if (soundName == null && soundName.Length == 0) {
+            soundName = soundName.Trim();
+
+            if (soundName == null || soundName.Length == 0) {
                 // Empty sound / No sound
                 return;
             }

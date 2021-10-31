@@ -19,7 +19,7 @@ namespace ExhibitionUtils
                     return sound.GetClip();
                 }
             }
-            Debug.LogError($"Sound does not exist in the config: {soundName}", this);
+            Debug.LogError($"Sound does not exist in the config: \"{soundName}\"", this);
             return null;
         }
     }

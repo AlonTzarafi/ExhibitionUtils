@@ -9,13 +9,13 @@ namespace ExhibitionUtils
         static public T FindComponentMatchString<T>(GameObject gameObject, string str) where T : Component
         {
             return gameObject
-                .GetComponentsInChildren<T>()
+                .GetComponentsInChildren<T>(true)
                 .FirstOrDefault(comp => comp.name == str);
         }
 
         static public T FindComponentMatchStringGlobal<T>(string str) where T : Component
         {
-            return GameObject.FindObjectsOfType<T>()
+            return GameObject.FindObjectsOfType<T>(true)
                 .First(go => go.name == str);
         }
 

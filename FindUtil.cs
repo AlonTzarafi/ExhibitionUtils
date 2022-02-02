@@ -51,5 +51,24 @@ namespace ExhibitionUtils
             return a;
         }
 
+        static public int GetChildIndex(GameObject gameObject)
+        {
+            return GetChildIndex(gameObject.transform);
+        }
+        
+        static public int GetChildIndex(Transform transform)
+        {
+            var parent = transform.parent;
+            for (int i = 0; i < parent.childCount; i++) {
+                if (parent.GetChild(i) == transform) {
+                    return i;
+                }
+            }
+            Debug.Log("CHILD NOT FOUND!!!", transform);
+            Debug.Log("IN PARENT!!!", parent);
+            Debug.LogError("ITS PROBLEM!!!!!");
+            return -1;
+        }
+
     }
 }

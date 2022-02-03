@@ -27,8 +27,26 @@ namespace ExhibitionUtils
 
             var clip = soundConfig.GetClip(soundName);
             if (clip != null) {
+                audioSource.pitch = 1f;
                 audioSource.PlayOneShot(clip);
             }
         }
+        
+        public void PlaySoundWithSpecialPitchBasic(string soundName, float pitch)
+        {
+            soundName = soundName.Trim();
+
+            if (soundName == null || soundName.Length == 0) {
+                // Empty sound / No sound
+                return;
+            }
+
+            var clip = soundConfig.GetClip(soundName);
+            if (clip != null) {
+                audioSource.pitch = pitch;
+                audioSource.PlayOneShot(clip);
+            }
+        }
+        
     }
 }

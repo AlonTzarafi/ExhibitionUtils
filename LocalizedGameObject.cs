@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ExhibitionUtils
 {
@@ -11,8 +12,10 @@ namespace ExhibitionUtils
         [SerializeField] public GameObject english;
         [SerializeField] public GameObject arabic;
         [SerializeField] public GameObject russian;
-
+        
         [HideInInspector] public GameObject obj;
+
+        private List<GameObject> allLanguages;
 
         static public LocalizedGameObject FindAndInitLocalized(string name)
         {
@@ -24,10 +27,16 @@ namespace ExhibitionUtils
 
         public void Init()
         {
-            if (hebrew) { hebrew.SetActive(false); }
-            if (english) { english.SetActive(false); }
-            if (arabic) { arabic.SetActive(false); }
-            if (russian) { russian.SetActive(false); }
+            allLanguages = new List<GameObject>();
+
+            if (hebrew) { allLanguages.Add(hebrew); }
+            if (english) { allLanguages.Add(english); }
+            if (arabic) { allLanguages.Add(arabic); }
+            if (russian) { allLanguages.Add(russian); }
+
+            foreach (var lang in allLanguages) {
+                lang.SetActive(false);
+            }
         }
 
         public void SetLanguage(GameLanguage language)
@@ -50,7 +59,13 @@ namespace ExhibitionUtils
 
         public void SetShown(bool value)
         {
-            obj.SetActive(value);
+            foreach (var lang in allLanguages) {
+                if (lang != obj) {
+                    lang.SetActive(false);
+                } else {
+                    lang.SetActive(value);
+                }
+            }
         }
 
         public Button Button()

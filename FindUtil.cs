@@ -22,14 +22,14 @@ namespace ExhibitionUtils
         static public List<GameObject> FindGameObjectsMatchName(string str)
         {
             Debug.Log($"Finding GO with name: {str}");
-            return GameObject.FindObjectsOfType<GameObject>()
+            return GameObject.FindObjectsOfType<GameObject>(true)
                 .Where(go => go.name == str)
                 .ToList();
         }
         static public GameObject FindGameObjectMatchName(string str)
         {
             Debug.Log($"Finding GO with name: {str}");
-            return GameObject.FindObjectsOfType<GameObject>()
+            return GameObject.FindObjectsOfType<GameObject>(true)
                 .First(go => go.name == str);
         }
 
